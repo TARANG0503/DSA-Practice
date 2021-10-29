@@ -1,0 +1,23 @@
+#include <iostream.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+	char str1[30]="blue";
+	char str2[30] = "oceans";  
+	int i=0,stop;
+	
+	//to get the last index containing character 
+	do	{ 
+		stop=i++;
+	}while(str1[i]!='\0');
+    
+	i=stop+1;
+	//concate strings
+	for(int j = 0; str2[j] != '\0'; j++, i++)
+		str1[i] = str2[j];	//copying chars of string2 in 1, one by one
+
+	str1[i] = '\0';    //to terminate resultant string
+	cout<<"\n Resultant string is: "<< str1;
+	getch();
+}
