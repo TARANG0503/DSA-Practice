@@ -1,0 +1,26 @@
+## Calculate minimum number of squares required to reach N 
+def minSquaresToN(n):
+    if n == 1 or n == 0:
+        return n
+    i = 1
+    arr = []
+    while (i**2 <= n):
+        arr.append(minSquaresToN(n-i**2))
+        i += 1
+    return min(arr)+1
+
+
+def minSquaresToN_DP(n, dp):
+    if dp[n] != -1 :
+        return dp[n]
+    else:
+        if n == 1 or n == 0:
+            return n
+        i = 1
+        arr = []
+        while (i**2 <= n):
+            dp[n- (i*i)] = minSquaresToN_DP(n-i**2, dp)
+            arr.append(dp[n-(i*i)])
+            i += 1
+            
+        return min(arr)+1
