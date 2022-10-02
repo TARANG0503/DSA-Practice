@@ -1,88 +1,76 @@
-// C++ program to illustrate
-// recursive approach to ternary search
+/* Implementation of very helpful algorithm in advance competitive programming- Ternary Search
+Ternary Search is similar to Binary Search, but here we divide the array into three parts instead of two parts, and then perform searching. */
+
 #include <bits/stdc++.h>
 using namespace std;
+#define for(a, b) for (int i = a; i < b; i++)
+#define printArr(arr, n) for(0, n) printf("%d ", arr[i]); printf("\n");
+#define endl "\n"
 
-// Function to perform Ternary Search
-int ternarySearch(int l, int r, int key, int ar[])
+int ternary_search(int *, int, int);
+
+int main(int argc, char const *argv[])
 {
-	if (r >= l) {
+	int n = 50;
+	int array[n];
+	for(0, n)
+		array[i] = (rand() % 150) + 1;	// storing random values between 1 to 150
+	cout << "Initial array: ";
+	printArr(array, n);
+	// Ternary Search is similar to Binary Search, therefore, this will be applicable on sorted array only.
+	// So sorting the array for our use. If getting sorted array, no need to perform sorting.
+	sort(array, array + n);
+	cout << "\nArray after sorting: ";
+	printArr(array, n);
 
-		// Find the mid1 and mid2
-		int mid1 = l + (r - l) / 3;
-		int mid2 = r - (r - l) / 3;
+	int key;
+	cout << "Enter the value to search in array: ";
+	cin >> key;
 
-		// Check if key is present at any mid
-		if (ar[mid1] == key) {
-			return mid1;
-		}
-		if (ar[mid2] == key) {
-			return mid2;
-		}
+	int key_idx = ternary_search(array, n, key);
 
-		// Since key is not present at mid,
-		// check in which region it is present
-		// then repeat the Search operation
-		// in that region
-		if (key < ar[mid1]) {
-
-			// The key lies in between l and mid1
-			return ternarySearch(l, mid1 - 1, key, ar);
-		}
-		else if (key > ar[mid2]) {
-
-			// The key lies in between mid2 and r
-			return ternarySearch(mid2 + 1, r, key, ar);
-		}
-		else {
-
-			// The key lies in between mid1 and mid2
-			return ternarySearch(mid1 + 1, mid2 - 1, key, ar);
-		}
+	if (key_idx == -1)
+	{
+		cout << key << " not present in the array." << endl;
+	} else
+	{
+		cout << key << " found at index " << key_idx << "." << endl;
 	}
 
-	// Key not found
+	return 0;
+}
+
+int ternary_search(int arr[], int n, int key)
+{
+	int l = 0, r = n - 1;
+	while (l <= r)
+	{
+		// finding the mid1 and mid2
+        int mid1 = l + (r - l) / 3;
+        int mid2 = r - (r - l) / 3;
+
+        // checking whether key is at any of the mid values
+        if (arr[mid1] == key)
+        {
+        	return mid1;
+        }
+        if (arr[mid2] == key)
+        {
+        	return mid2;
+        }
+
+        // Checking which segment our key is lying
+        if (arr[mid1] > key)
+        {
+        	r = mid1 - 1;
+        } else if (arr[mid2] < key)
+        {
+        	l = mid2 + 1;
+        } else
+        {
+        	l = mid1 + 1;
+        	r = mid2 - 1;
+        }
+	}
 	return -1;
 }
-
-// Driver code
-int main()
-{
-	int l, r, p, key;
-
-	// Get the array
-	// Sort the array if not sorted
-	int ar[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
-	// Starting index
-	l = 0;
-
-	// length of array
-	r = 9;
-
-	// Checking for 5
-
-	// Key to be searched in the array
-	key = 5;
-
-	// Search the key using ternarySearch
-	p = ternarySearch(l, r, key, ar);
-
-	// Print the result
-	cout << "Index of " << key
-		<< " is " << p << endl;
-
-	// Checking for 50
-
-	// Key to be searched in the array
-	key = 50;
-
-	// Search the key using ternarySearch
-	p = ternarySearch(l, r, key, ar);
-
-	// Print the result
-	cout << "Index of " << key
-		<< " is " << p << endl;
-}
-
-
