@@ -1,1 +1,2 @@
-This project is for uploading Datastructures and Algorithms (DSA) code samples.
+## DSA Practice
+This project is a collection of Datastructures and Algorithms (DSA) code samples.
