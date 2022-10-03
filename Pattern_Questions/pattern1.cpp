@@ -8,10 +8,10 @@ int main(){
     while(i<=n){
         int j=1;
         while(j<=n){
-            cout<<i;
-            j=j+1;
+            cout<<i<<endl;
+            j+=1;
         }
         cout<<endl;
-        i=i+1;
+        i+=1;
     }
 }
