@@ -1,0 +1,22 @@
+import java.io.UnsupportedEncodingException;  
+public class ByteArraytoStringExample3  
+{  
+public static void main(String args[])  
+{  
+try  
+{  
+byte[] bytes = new byte[] { 75, 69, 82, 115, 121, 90, 43, 98, -30};    //bytes in ASCII code  
+String utf = new String(bytes, "UTF-8");            //converts into UTF-8 encoding  
+String cp1252 = new String(bytes, "Cp1252");    //conversts into Cp1252 endcoding  
+//converts into windows-1252 encoding  
+String windows1252 = new String(bytes, "Windows-1252");   
+System.out.println("String in UTF-8 encoding : " + utf);  
+System.out.println("String in Cp1252 encoding : " + cp1252);  
+System.out.println("string Windows-1252 encoding : " + windows1252);  
+}  
+catch(Exception e)  
+{  
+e.printStackTrace();  
+}  
+}  
+}
